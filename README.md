@@ -15,6 +15,8 @@ Steps:
 		> python -m SimpleHTTPServer 8080
 			
 	4. Open a browser and view http://localhost:8080
+	
+N.B. You can change the 8080 to any port number you want, for example python -m SimpleHTTPServer 9000 would serve up http://localhost:9000 and so on.
 
 #Learning Resources
 

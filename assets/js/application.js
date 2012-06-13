@@ -1,15 +1,20 @@
 define([
-        'jquery'
+        'jquery',
+        'modules/exampleModule'
 	],
-	function ($) {
+	function ($, ExampleModule) {
 		"use strict";
 		
 //		function _examplePrivateFunction() {
 //			do something private
+//			
+//			Usage of Module public classes:
+//		
+//			ExampleModule.examplePublicFunction();
 //		}	
 		
 		return {
-//			_examplePublicFunction: function () {
+//			examplePublicFunction: function () {
 //				do something public
 //			},
 			
