@@ -1,26 +1,20 @@
 define([
         'jquery',
-        'modules/exampleModule'
+        'modules/loader.module'
 	],
-	function ($, ExampleModule) {
+	function ($, LoaderModule) {
 		"use strict";
 		
-//		function _examplePrivateFunction() {
-//			do something private
-//			
-//			Usage of Module public classes:
-//		
-//			ExampleModule.examplePublicFunction();
-//		}	
-		
 		return {
-//			examplePublicFunction: function () {
-//				do something public
-//			},
-			
 			initialize: function () {	
-				var $container = $('#container');
-				console.log('TEST THIS');
+
+				LoaderModule.onaudioloaded(function (audio) {					
+//					audio.play();
+				});
+				
+				var fileInput = document.getElementById('fileInput');
+				fileInput.addEventListener("change", LoaderModule.handleFiles, false);
+				
 			}
 		};
 	}
