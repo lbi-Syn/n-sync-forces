@@ -4,10 +4,9 @@ define([
 	function ($) {
 		"use strict";
 
-		return function () {	
+		return (function () {	
 			var audio = null,
 				onaudioloadedCallback = null;
-		
 		
 			function _readFile (file, _callback) {
 				var reader = new FileReader();
@@ -40,6 +39,6 @@ define([
 				_loadAudio(this.files[0]);
 			} 
 		
-		}
+		});
 	}
 );
