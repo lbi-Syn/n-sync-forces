@@ -35,8 +35,12 @@ define([
 				onaudioloadedCallback = _callback;
 			}
 		
-			this.handleFiles = function () {
-				_loadAudio(this.files[0]);
+			this.handleFile = function (url) {
+				if (url !== undefined) {
+					_setAudio(url);
+				} else if (this.files !== undefined) {
+					_loadAudio(this.files[0]);
+				}
 			} 
 		
 		});

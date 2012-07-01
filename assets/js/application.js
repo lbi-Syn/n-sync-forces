@@ -8,21 +8,20 @@ define([
 		return {
 			initialize: function () {	
 
-				var loader1 = new LoaderModule();
-				loader1.onaudioloaded(function (audio) {					
-					audio.play();
-				});
-				
-				var fileInput1 = document.getElementById('fileInput1');
-				fileInput1.addEventListener("change", loader1.handleFiles, false);
-				
+//				var loader1 = new LoaderModule();
+//				loader1.onaudioloaded(function (audio) {					
+//					audio.play();
+//				});
+//				
+//				loader1.handleFile('/assets/audoi/mp3.mp3');
+
 				var loader2 = new LoaderModule();
 				loader2.onaudioloaded(function (audio) {					
 					audio.play();
 				});
 				
-				var fileInput2 = document.getElementById('fileInput2');
-				fileInput2.addEventListener("change", loader2.handleFiles, false);
+				var fileInput = document.getElementById('fileInput');
+				fileInput.addEventListener("change", loader2.handleFile, false);
 				
 			}
 		};
