@@ -12,8 +12,7 @@ define([
 //				loader1.onaudioloaded(function (audio) {					
 //					audio.play();
 //				});
-//				
-//				loader1.handleFile('/assets/audoi/mp3.mp3');
+//				loader1.handleFile('/assets/audio/mp3.mp3');
 
 				var loader2 = new LoaderModule();
 				loader2.onaudioloaded(function (audio) {					
