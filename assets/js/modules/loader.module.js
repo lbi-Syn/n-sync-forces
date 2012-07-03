@@ -1,10 +1,8 @@
-define([
-        'jquery'
-	],
-	function ($) {
+define([],
+	function () {
 		"use strict";
 
-		return (function () {	
+		return (function () {
 			var audio = null,
 				onaudioloadedCallback = null;
 		
@@ -14,7 +12,7 @@ define([
 					if (e.target.readyState == FileReader.DONE) {
 						_callback(e);
 					}
-				}
+				};
 				reader.readAsDataURL(file);
 			}
 		
@@ -33,7 +31,7 @@ define([
 		
 			this.onaudioloaded = function (_callback) {
 				onaudioloadedCallback = _callback;
-			}
+			};
 		
 			this.handleFile = function (url) {
 				if (url !== undefined) {
@@ -41,8 +39,7 @@ define([
 				} else if (this.files !== undefined) {
 					_loadAudio(this.files[0]);
 				}
-			} 
-		
+			};
 		});
 	}
 );
