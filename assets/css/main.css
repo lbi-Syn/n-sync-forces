@@ -1,0 +1,12 @@
+.d-block{
+	position:relative;
+	width:430px;
+	margin:5px;
+	padding:1em 5em;
+	background-color:#ccc;
+	border:1px solid #111;
+	min-height: 500px;
+	border-radius:5px;
+}
+
+
