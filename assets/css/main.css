@@ -11,6 +11,16 @@ body{
     width: 960px;
 }
 
+h1{
+	color: #DBF0FB;
+    font-size: 74px;
+    font-weight: lighter;
+    margin: 0 auto;
+    position: relative;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+    width: 840px;
+}
+
 .d-block{
 	position:relative;
 	width:430px;
