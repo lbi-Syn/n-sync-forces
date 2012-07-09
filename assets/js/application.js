@@ -1,26 +1,32 @@
 define([
         'jquery',
-        'modules/loader.module'
+        'modules/audiolet_app.module',
+        'modules/canvas_app.module'
 	],
-	function ($, LoaderModule) {
+	function ($, audioletApp, canvasApp) {
 		"use strict";
 		
 		return {
 			initialize: function () {	
 
-//				var loader1 = new LoaderModule();
-//				loader1.onaudioloaded(function (audio) {					
-//					audio.play();
-//				});
-//				loader1.handleFile('/assets/audio/mp3.mp3');
+				$(document).ready(function() {
+					canvas = $('#sequence');
+					context = canvas[0].getContext("2d");
+					noteWidth = canvas.width() / patternLength;
+					noteHeight = canvas.height() / numRows;
 
-				var loader2 = new LoaderModule();
-				loader2.onaudioloaded(function (audio) {					
-					audio.play();
+					canvas.click(function(e) {
+					// get click coordinates relative to the canvas:
+					var xClick = e.pageX - canvas.offset().left;
+					var yClick = e.pageY - canvas.offset().top;
+					// get matrix indexes:
+					xClick = Math.floor(xClick / noteWidth);
+					yClick = Math.floor(yClick / noteHeight);
+					togglePixel(xClick, yClick);
+					});
+
+					drawRuler();
 				});
-				
-				var fileInput = document.getElementById('fileInput');
-				fileInput.addEventListener("change", loader2.handleFile, false);
 				
 			}
 		};

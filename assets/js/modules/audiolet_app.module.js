@@ -14,7 +14,7 @@ define([
 		var latency = 1000 * bufferSize / sampleRate;
 		var audioletReady = false;
 
-		return function() {
+		return function(CanvasApp) {
 			this.audiolet = new Audiolet(sampleRate, 2, bufferSize);
 			this.audiolet.scheduler.setTempo(100);
 
@@ -111,7 +111,9 @@ define([
 					// draw animation of drum machine.
 					// to make up for latency, the animate function will be called
 					// after latency milliseconds.
-					setTimeout("animate()", latency);
+					if (CanvasApp !== undefined) {
+						setTimeout(CanvasApp.animate(), latency);
+					}
 					// re-trigger the sample
 					this.triggerBd.trigger.setValue(1);
 
