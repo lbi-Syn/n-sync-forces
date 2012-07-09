@@ -1,3 +1,13 @@
+body{
+	font-family: 'Kameron', serif;
+}
+
+#container{
+	position: relative;
+	margin:0 auto;
+	width: 960px;
+}
+
 .d-block{
 	position:relative;
 	width:430px;
