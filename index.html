@@ -14,21 +14,14 @@
 <body>
 	<h1>superFidelity</h1>
 	<div id="container">
-		<img src="/assets/img/logo.png" alt="super fidelity" />
-		<section id="play">
-	        <button type="button" onclick="playExample()">&#9654; Play Example</button>
-	    </section>
 		<canvas id="sequence" width="640" height="60"></canvas>
-		<div id="fileLoader">
 		  <input type="file" id="fileInput">
 		</div>
+		<section class="playerWrapper">
+	        	<button type="button" onclick="playExample()">&#9654;</button>
+			<canvas id="sequence" width="640" height="60"></canvas>
 		
-		<div class="d-block">
-			
-		</div>
-		<div class="d-block">
-			
-		</div>	
+		</section>
 	</div>
 	<script data-main="assets/js/main.js" src="libs/js/require.js"></script>
 </body>
