@@ -1,3 +1,4 @@
+/*global require*/
 (function() {
 	"use strict";
 	
@@ -5,7 +6,9 @@
 	
 	require.config({
 		paths : {
-			jquery : libsPath + 'jquery-1.7.2.min'
+			jquery : libsPath + 'jquery-1.7.2.min',
+			audiolet : libsPath + 'audiolet.min',
+			audiofile : libsPath + 'audiofile'
 		},
 		baseUrl : 'assets/js'
 	});
