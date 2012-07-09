@@ -1,7 +1,8 @@
 define([
-        'jquery'
+        'jquery',
+        'modules/audiolet_app.module'
 	],
-	function ($) {
+	function ($, audioletApp) {
 		"use strict";
 		
 		// structural variables:
@@ -25,7 +26,14 @@ define([
 		var noteLoudColor = '#48ffff';
 
 
-		function _initCanvas() {
+		function _initCanvas(options) {
+
+			/* OPTIONS FUNCITONALITY ADDED BY ANDY */
+			canvas = options.canvas;
+			context = options.context;
+			noteWidth = options.noteWidth;
+			noteHeight = options.noteHeight;
+
 			// get patterns list:
 			rows[sample.bass_drum] = audioletApp.bdPattern.list;
 			rows[sample.hi_hat] = audioletApp.hhPattern.list;
@@ -33,20 +41,21 @@ define([
 
 			patternLength = rows[sample.bass_drum].length;
 
-			draw();
+			_draw();
 		}
 
 		function _draw() {
 			// move horizontally (time wise)
-			for (i = 0; i < patternLength; i++) {
+			for (var i = 0; i < patternLength; i++) {
 				// move vertically (rows)
-				for (j = 0; j < numRows; j++) {
-					if (rows[j][i] == 0)
+				for (var j = 0; j < numRows; j++) {
+					if (rows[j][i] == 0) {
 						context.fillStyle = noteSoftColor;
-					else if (rows[j][i] == 1)
+					} else if (rows[j][i] == 1) {
 						context.fillStyle = noteMedColor;
-					else if (rows[j][i] == 2)
+					} else if (rows[j][i] == 2) {
 						context.fillStyle = noteLoudColor;
+					}
 
 					context.fillRect(i * noteWidth, j * noteHeight, noteWidth-1, noteHeight-1);
 				/*
@@ -62,7 +71,7 @@ define([
 
 		function _animate() {
 			context.clearRect(0, 0, canvas.width(), canvas.height());
-			draw();
+			_draw();
 			context.fillRect(activeColumn * noteWidth, 0, 1, noteHeight * numRows);
 			activeColumn = (activeColumn + 1) % patternLength;
 		}
@@ -81,7 +90,7 @@ define([
 
 			//rulerContext.fillStyle = noteSoftColor;
 			//rulerContext.fillRect(0, 0, ruler.width(), ruler.height());
-			for (i = 0; i <= patternLength; i++) {
+			for (var i = 0; i <= patternLength; i++) {
 				rulerContext.strokeStyle = "#fff";
 				rulerContext.stroke();
 				// draw half notes:

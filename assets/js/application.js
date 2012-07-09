@@ -1,9 +1,8 @@
 define([
         'jquery',
-        'modules/audiolet_app.module',
         'modules/canvas_app.module'
 	],
-	function ($, audioletApp, canvasApp) {
+	function ($, canvasApp) {
 		"use strict";
 		
 		return {
@@ -15,17 +14,24 @@ define([
 					noteWidth = canvas.width() / patternLength;
 					noteHeight = canvas.height() / numRows;
 
-					canvas.click(function(e) {
-					// get click coordinates relative to the canvas:
-					var xClick = e.pageX - canvas.offset().left;
-					var yClick = e.pageY - canvas.offset().top;
-					// get matrix indexes:
-					xClick = Math.floor(xClick / noteWidth);
-					yClick = Math.floor(yClick / noteHeight);
-					togglePixel(xClick, yClick);
+					canvasApp.init({
+						canvas: canvas,
+						context: context,
+						noteWidth: noteWidth,
+						noteHeight: noteHeight
 					});
 
-					drawRuler();
+					canvas.click(function(e) {
+						// get click coordinates relative to the canvas:
+						var xClick = e.pageX - canvas.offset().left;
+						var yClick = e.pageY - canvas.offset().top;
+						// get matrix indexes:
+						xClick = Math.floor(xClick / noteWidth);
+						yClick = Math.floor(yClick / noteHeight);
+						togglePixel(xClick, yClick);
+					});
+
+					canvasApp.drawRuler();
 				});
 				
 			}
