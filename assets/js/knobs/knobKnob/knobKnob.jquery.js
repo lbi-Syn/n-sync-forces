@@ -9,7 +9,6 @@
 (function($){
 	
 	$.fn.knobKnob = function(props){
-	
 		var options = $.extend({
 			snap: 0,
 			value: 0,
