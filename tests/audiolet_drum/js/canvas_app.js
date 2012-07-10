@@ -1,10 +1,10 @@
 // structural variables:
-var numRows = 3;
+var numRows = 2;
 var rows = new Array(numRows);
 // keep a list of sample names:
 var sample = {"bass_drum":0, "hi_hat":1, "snare_drum":2};
 
-var patternLength = 32;
+var patternLength = 16;
 var activeColumn = 0;
 
 // design variables:
@@ -15,8 +15,8 @@ var noteWidth = 10;
 var noteHeight = 10;
 
 var noteSoftColor = '#222222';
-var noteMedColor = '#359aff';
-var noteLoudColor = '#48ffff';
+var noteMedColor = '#f26c7b';
+var noteLoudColor = '#8f323c';
 
 $(document).ready(function() {
   canvas = $('#sequence');

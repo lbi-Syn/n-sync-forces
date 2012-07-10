@@ -23,8 +23,8 @@ define([
 		var noteHeight = 10;
 
 		var noteSoftColor = '#222222';
-		var noteMedColor = '#359aff';
-		var noteLoudColor = '#48ffff';
+		var noteMedColor = '#f26c7b';
+		var noteLoudColor = '#8f323c';
 
 		function _initCanvas(options) {
 
