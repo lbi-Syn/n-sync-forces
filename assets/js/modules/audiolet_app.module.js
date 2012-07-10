@@ -7,8 +7,11 @@ define([
 	function ($, AudioletFileLib, AudioletLib) {
 		//"use strict";
 		
-		var bufferSize = 65536;
-		var sampleRate = 44100;
+		// var bufferSize = 65536;
+		// var sampleRate = 44100;
+
+		var bufferSize = 20000;
+		var sampleRate = 20000;
 		// calculate the latency so it can be later used to synchronize the audio
 		// with the graphics.
 		var latency = 1000 * bufferSize / sampleRate;
@@ -141,9 +144,9 @@ define([
 					// draw animation of drum machine.
 					// to make up for latency, the animate function will be called
 					// after latency milliseconds.
-					if (canvasApp !== undefined) {
-						setTimeout(canvasApp.animate(), latency);
-					}
+					// if (canvasApp !== undefined) {
+					// 	setTimeout(canvasApp.animate(), latency);
+					// }
 					// re-trigger the sample
 					channels[0].trigger.trigger.setValue(1);
 

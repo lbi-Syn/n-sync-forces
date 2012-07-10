@@ -7,7 +7,7 @@
 	require.config({
 		paths : {
 			jquery : libsPath + 'jquery-1.7.2.min',
-			audiolet : libsPath + 'audiolet.min',
+			audiolet : libsPath + 'audiolet',
 			audiofile : libsPath + 'audiofile'
 		},
 		baseUrl : 'assets/js'
