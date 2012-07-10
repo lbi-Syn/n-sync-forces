@@ -13,15 +13,20 @@ define([
 
 				$(document).ready(function() {
 					var canvas = $('#sequence'),
+						button = $('#button'),
 						context = canvas[0].getContext("2d"),
 						noteWidth = canvas.width() / patternLength,
 						noteHeight = canvas.height() / numRows;
 
-					canvasApp.initCanvas({
-						canvas: canvas,
-						context: context,
-						noteWidth: noteWidth,
-						noteHeight: noteHeight
+					
+
+					button.click(function(e) {
+						canvasApp.initCanvas({
+							canvas: canvas,
+							context: context,
+							noteWidth: noteWidth,
+							noteHeight: noteHeight
+						});
 					});
 
 					canvas.click(function(e) {

@@ -59,7 +59,7 @@ define([
 			channels[2].buffer.load('assets/audio/sn_stereo.wav', false);
 
 			// Create buffer players
-			channels[0].buffer = new BufferPlayer(audiolet, channels[0].buffer, 1, 0, 0);
+			channels[0].player = new BufferPlayer(audiolet, channels[0].buffer, 1, 0, 0);
 			channels[1].player = new BufferPlayer(audiolet, channels[1].buffer, 1, 0, 0);
 			channels[2].player = new BufferPlayer(audiolet, channels[2].buffer, 1, 0, 0);
 
@@ -93,7 +93,7 @@ define([
 			channels[2].gain.connect(channels[2].pan);
 			// output of pan to general output
 			// all three signals will be added together when connected to the output
-			channesl[0].pan.connect(audiolet.output);
+			channels[0].pan.connect(audiolet.output);
 			channels[1].pan.connect(audiolet.output);
 			channels[2].pan.connect(audiolet.output);
 
@@ -124,10 +124,6 @@ define([
 											0, 0, 0, 0,   1, 0, 0, 0,
 											0, 1, 0, 0,   2, 0, 0, 1], Infinity);
 
-			return channels;
-		}
-
-		function _play(canvasApp) {
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
 			audiolet.scheduler.play([channels[0].pattern], channels[0].duration,
@@ -187,15 +183,12 @@ define([
 
 				}.bind(this)
 			);
+
+			return channels;
 		}
 
 		return {
-			init: function () {
-				_init();
-			},
-			play: function (canvasApp) {
-				_play(canvasApp);
-			}
+			init: _init
 		};
 	}
 );

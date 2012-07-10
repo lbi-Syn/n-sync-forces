@@ -26,8 +26,6 @@ define([
 		var noteMedColor = '#359aff';
 		var noteLoudColor = '#48ffff';
 
-		console.log(audioletApp);
-
 		function _initCanvas(options) {
 
 			channels = audioletApp.init();
