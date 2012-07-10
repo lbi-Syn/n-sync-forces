@@ -13,9 +13,9 @@ define([
 
 				$(document).ready(function() {
 					var canvas = $('#sequence'),
-					context = canvas[0].getContext("2d"),
-					noteWidth = canvas.width() / patternLength,
-					noteHeight = canvas.height() / numRows;
+						context = canvas[0].getContext("2d"),
+						noteWidth = canvas.width() / patternLength,
+						noteHeight = canvas.height() / numRows;
 
 					canvasApp.initCanvas({
 						canvas: canvas,

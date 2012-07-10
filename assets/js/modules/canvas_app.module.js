@@ -17,6 +17,7 @@ define([
 		// design variables:
 		var canvas = null;
 		var context = null;
+		var channels = null;
 
 		var noteWidth = 10;
 		var noteHeight = 10;
@@ -25,8 +26,11 @@ define([
 		var noteMedColor = '#359aff';
 		var noteLoudColor = '#48ffff';
 
+		console.log(audioletApp);
 
 		function _initCanvas(options) {
+
+			channels = audioletApp.init();
 
 			/* OPTIONS FUNCITONALITY ADDED BY ANDY */
 			canvas = options.canvas;
@@ -35,9 +39,9 @@ define([
 			noteHeight = options.noteHeight;
 
 			// get patterns list:
-			rows[sample.bass_drum] = audioletApp.getbdPattern().list;
-			rows[sample.hi_hat] = audioletApp.gethhPattern().list;
-			rows[sample.snare_drum] = audioletApp.getsnPattern().list;
+			rows[sample.bass_drum] = channels[0].pattern.list;
+			rows[sample.hi_hat] = channels[1].pattern.list;
+			rows[sample.snare_drum] = channels[2].pattern.list;
 
 			patternLength = rows[sample.bass_drum].length;
 
