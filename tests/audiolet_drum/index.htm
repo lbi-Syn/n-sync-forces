@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Audiolet - Drum Machine</title>
     
+    <link rel="stylesheet" media="screen" href="css/main.css">
     <script type="text/javascript" src="../../libs/js/jquery-1.7.2.min.js"></script>
     <script src="js/Audiolet.min.js"></script>
 
@@ -22,6 +23,9 @@
       </section>
       <section>
         <div id="drum-machine-wrapper">
+          <div id="ruler-wrapper">
+            <canvas id="ruler" width="640" height="20"></canvas>
+          </div>
           <div id="sequence-wrapper">
             <canvas id="sequence" width="640" height="60"></canvas>
           </div>

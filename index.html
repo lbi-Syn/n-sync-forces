@@ -16,10 +16,14 @@
 	<div id="container">
 		<section class="playerWrapper">
 			<section id="play">
-	        	<button type="button" onclick="playExample()">&#9654;</button>
+	        	<button type="button" id="button">&#9654;</button>
 		    </section>
-		    <canvas id="ruler" width="640" height="60"></canvas>
-			<canvas id="sequence" width="640" height="60"></canvas>
+		    <div id="ruler-wrapper">
+	        	<canvas id="ruler" width="640" height="20"></canvas>
+	        </div>
+			<div id="sequence-wrapper">
+            	<canvas id="sequence" width="640" height="60"></canvas>
+          	</div>
 		
 		</section>
 	</div>

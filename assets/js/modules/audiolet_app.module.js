@@ -5,7 +5,7 @@ define([
         'audiolet'
 	],
 	function ($, AudioletFileLib, AudioletLib) {
-		"use strict";
+		//"use strict";
 		
 		var bufferSize = 65536;
 		var sampleRate = 44100;
@@ -14,7 +14,7 @@ define([
 		var latency = 1000 * bufferSize / sampleRate;
 		var audioletReady = false;
 
-		function App() {
+		function _play () {
 			this.audiolet = new Audiolet(sampleRate, 2, bufferSize);
 			this.audiolet.scheduler.setTempo(100);
 
@@ -161,8 +161,10 @@ define([
 			);
 
 			return this;
-		};
+		}
 
-		return new App();
+		return {
+			play: _play
+		};
 	}
 );
