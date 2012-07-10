@@ -59,9 +59,9 @@ define([
 			channels[2].buffer.load('assets/audio/sn_stereo.wav', false);
 
 			// Create buffer players
-			channels[0].buffer = new BufferPlayer(audiolet, bd, 1, 0, 0);
-			channels[1].player = new BufferPlayer(audiolet, hh, 1, 0, 0);
-			channels[2].player = new BufferPlayer(audiolet, sn, 1, 0, 0);
+			channels[0].buffer = new BufferPlayer(audiolet, channels[0].buffer, 1, 0, 0);
+			channels[1].player = new BufferPlayer(audiolet, channels[1].buffer, 1, 0, 0);
+			channels[2].player = new BufferPlayer(audiolet, channels[2].buffer, 1, 0, 0);
 
 			// Create trigger to re-trigger the playback of samples
 			channels[0].trigger = new TriggerControl(audiolet);
@@ -82,11 +82,11 @@ define([
 			// output of trigger to input of player
 			channels[0].trigger.connect(channels[0].player, 0, 1);
 			channels[1].trigger.connect(channels[1].player, 0, 1);
-			channels[2].connect(channels[2].player, 0, 1);
+			channels[2].trigger.connect(channels[2].player, 0, 1);
 			// output of player to input of gain
 			channels[0].player.connect(channels[0].gain);
-			channels[1].connect(channels[1].gain);
-			channels[2].connect(channels[2].gain);
+			channels[1].player.connect(channels[1].gain);
+			channels[2].player.connect(channels[2].gain);
 			// output of gain to input of pan
 			channels[0].gain.connect(channels[0].pan);
 			channels[1].gain.connect(channels[1].pan);
@@ -131,12 +131,12 @@ define([
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
 			audiolet.scheduler.play([channels[0].pattern], channels[0].duration,
-				function(channels[0].pattern, channels[0].duration) {
+				function(pattern, duration) {
 
 					// apply amplitude
-					if (channels[0].pattern == 2) {
+					if (pattern == 2) {
 						channels[0].gain.gain.setValue(1.00);
-					} else if (channels[0].pattern == 1) {
+					} else if (pattern == 1) {
 						channels[0].gain.gain.setValue(0.70);
 					} else {
 						channels[0].gain.gain.setValue(0.00);
@@ -155,12 +155,12 @@ define([
 			);
 
 			audiolet.scheduler.play([channels[1].pattern], channels[1].duration,
-				function(channels[1].pattern, channels[1].duration) {
+				function(pattern) {
 
 					// apply amplitude
-					if (channels[1].pattern == 2) {
+					if (pattern == 2) {
 						channels[1].gain.gain.setValue(1.00);
-					} else if (channels[1].pattern == 1) {
+					} else if (pattern == 1) {
 						channels[1].gain.gain.setValue(0.70);
 					} else {
 						channels[1].gain.gain.setValue(0.00);
@@ -172,12 +172,12 @@ define([
 			);
 
 			audiolet.scheduler.play([channels[2].pattern], channels[2].duration,
-				function(channels[2].pattern, channels[2].duration) {
+				function(pattern) {
 
 					// apply amplitude
-					if (channels[2].pattern == 2) {
+					if (pattern == 2) {
 						channels[2].gain.gain.setValue(1.00);
-					} else if (channels[2].pattern == 1) {
+					} else if (pattern == 1) {
 						channels[2].gain.gain.setValue(0.70);
 					} else {
 						channels[2].gain.gain.setValue(0.00);
