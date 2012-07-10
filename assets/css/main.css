@@ -74,6 +74,7 @@ h1{
   border: medium none;
   border-radius: 58px 58px 58px 58px;
   box-shadow: 3px 1px 0 1px #3C3B3B;
+  -moz-transform: rotateX(120deg);
   height: 100px;
   width: 100px;
 }*/
