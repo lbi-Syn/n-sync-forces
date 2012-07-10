@@ -35,9 +35,9 @@ define([
 			noteHeight = options.noteHeight;
 
 			// get patterns list:
-			rows[sample.bass_drum] = audioletApp.bdPattern.list;
-			rows[sample.hi_hat] = audioletApp.hhPattern.list;
-			rows[sample.snare_drum] = audioletApp.snPattern.list;
+			rows[sample.bass_drum] = audioletApp.getbdPattern().list;
+			rows[sample.hi_hat] = audioletApp.gethhPattern().list;
+			rows[sample.snare_drum] = audioletApp.getsnPattern().list;
 
 			patternLength = rows[sample.bass_drum].length;
 
@@ -86,29 +86,31 @@ define([
 
 		function _drawRuler() {
 			var ruler = $('#ruler');
-			var rulerContext = ruler[0].getContext("2d");
+			if (ruler[0] !== undefined) {
+	 			var rulerContext = ruler[0].getContext("2d");
 
-			//rulerContext.fillStyle = noteSoftColor;
-			//rulerContext.fillRect(0, 0, ruler.width(), ruler.height());
-			for (var i = 0; i <= patternLength; i++) {
-				rulerContext.strokeStyle = "#fff";
-				rulerContext.stroke();
-				// draw half notes:
-				if (i % 8 == 0) {
-					rulerContext.moveTo(i * noteWidth, 0);
-					rulerContext.lineTo(i * noteWidth, ruler.height());
-				} else if (i % 4 == 0) {
-					rulerContext.moveTo(i * noteWidth, 0);
-					rulerContext.lineTo(i * noteWidth, ruler.height() * 0.5);
-				} else if (i % 2 == 0) {
-					rulerContext.moveTo(i * noteWidth, 0);
-					rulerContext.lineTo(i * noteWidth, ruler.height() * 0.35);
-				} else {
-					rulerContext.moveTo(i * noteWidth, 0);
-					rulerContext.lineTo(i * noteWidth, ruler.height() * 0.15);
+				//rulerContext.fillStyle = noteSoftColor;
+				//rulerContext.fillRect(0, 0, ruler.width(), ruler.height());
+				for (var i = 0; i <= patternLength; i++) {
+					rulerContext.strokeStyle = "#fff";
+					rulerContext.stroke();
+					// draw half notes:
+					if (i % 8 == 0) {
+						rulerContext.moveTo(i * noteWidth, 0);
+						rulerContext.lineTo(i * noteWidth, ruler.height());
+					} else if (i % 4 == 0) {
+						rulerContext.moveTo(i * noteWidth, 0);
+						rulerContext.lineTo(i * noteWidth, ruler.height() * 0.5);
+					} else if (i % 2 == 0) {
+						rulerContext.moveTo(i * noteWidth, 0);
+						rulerContext.lineTo(i * noteWidth, ruler.height() * 0.35);
+					} else {
+						rulerContext.moveTo(i * noteWidth, 0);
+						rulerContext.lineTo(i * noteWidth, ruler.height() * 0.15);
+					}
 				}
+				// rulerContext.strokeRect(0, 0, ruler.width(), ruler.height());
 			}
-			// rulerContext.strokeRect(0, 0, ruler.width(), ruler.height());
 		}
 
 		return {

@@ -4,17 +4,20 @@ define([
 	],
 	function ($, canvasApp) {
 		"use strict";
+
+		var patternLength = 32;
+		var numRows = 3;
 		
 		return {
-			initialize: function () {	
+			initialize: function () {
 
 				$(document).ready(function() {
-					canvas = $('#sequence');
-					context = canvas[0].getContext("2d");
-					noteWidth = canvas.width() / patternLength;
+					var canvas = $('#sequence'),
+					context = canvas[0].getContext("2d"),
+					noteWidth = canvas.width() / patternLength,
 					noteHeight = canvas.height() / numRows;
 
-					canvasApp.init({
+					canvasApp.initCanvas({
 						canvas: canvas,
 						context: context,
 						noteWidth: noteWidth,
@@ -28,7 +31,7 @@ define([
 						// get matrix indexes:
 						xClick = Math.floor(xClick / noteWidth);
 						yClick = Math.floor(yClick / noteHeight);
-						togglePixel(xClick, yClick);
+						canvasApp.togglePixel(xClick, yClick);
 					});
 
 					canvasApp.drawRuler();

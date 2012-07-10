@@ -14,7 +14,7 @@ define([
 		var latency = 1000 * bufferSize / sampleRate;
 		var audioletReady = false;
 
-		return function(CanvasApp) {
+		function App() {
 			this.audiolet = new Audiolet(sampleRate, 2, bufferSize);
 			this.audiolet.scheduler.setTempo(100);
 
@@ -23,10 +23,9 @@ define([
 			this.hh = new AudioletBuffer(1, 0);
 			this.sn = new AudioletBuffer(1, 0);
 			// Load wav files using synchronous XHR
-			this.bd.load('audio/bd_stereo.wav', false);
-			this.hh.load('audio/hh_stereo.wav', false);
-			this.sn.load('audio/sn_stereo.wav', false);
-
+			this.bd.load('assets/audio/bd_stereo.wav', false);
+			this.hh.load('assets/audio/hh_stereo.wav', false);
+			this.sn.load('assets/audio/sn_stereo.wav', false);
 
 			// Create buffer players
 			this.playerBd = new BufferPlayer(this.audiolet, this.bd, 1, 0, 0);
@@ -95,6 +94,18 @@ define([
 											0, 1, 0, 0,   2, 0, 0, 1], Infinity);
 
 
+			this.getbdPattern = function () {
+				return this.bdPattern;
+			};
+
+			this.gethhPattern = function () {
+				return this.hhPattern;
+			};
+
+			this.getsnPattern = function () {
+				return this.snPattern;
+			};
+
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
 			this.audiolet.scheduler.play([this.bdPattern], bdDurations,
@@ -111,9 +122,9 @@ define([
 					// draw animation of drum machine.
 					// to make up for latency, the animate function will be called
 					// after latency milliseconds.
-					if (CanvasApp !== undefined) {
-						setTimeout(CanvasApp.animate(), latency);
-					}
+					// if (CanvasApp !== undefined) {
+					// 	setTimeout(CanvasApp.animate(), latency);
+					// }
 					// re-trigger the sample
 					this.triggerBd.trigger.setValue(1);
 
@@ -137,16 +148,21 @@ define([
 			this.audiolet.scheduler.play([this.snPattern], snDurations,
 				function(snPattern) {
 					// apply amplitude
-					if (snPattern != 0)
+					if (snPattern != 0) {
 						this.gainSn.gain.setValue(0.70);
-					else if (snPattern == 1)
+					} else if (snPattern == 1) {
 						this.gainSn.gain.setValue(0.20);
-					else
+					} else {
 						this.gainSn.gain.setValue(0.00);
 						// re-trigger the sample
 						this.triggerSn.trigger.setValue(1);
+					}
 				}.bind(this)
 			);
+
+			return this;
 		};
+
+		return new App();
 	}
 );
