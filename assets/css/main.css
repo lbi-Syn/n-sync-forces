@@ -69,7 +69,6 @@ h1{
   -moz-transform: translate(0, 4px);
   transform: translate(0, 4px);
 }
-/*input{
   background: none repeat scroll 0 0 #000000;
   border: medium none;
   border-radius: 58px 58px 58px 58px;
@@ -77,4 +76,4 @@ h1{
   -moz-transform: rotateX(120deg);
   height: 100px;
   width: 100px;
-}*/
+}
