@@ -10,13 +10,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" media="screen" href="libs/css/normalize.css?v=2011.11.04">
 	<link rel="stylesheet" media="screen" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/js/knobs/knobKnob/knobKnob.css" />
 </head>
 <body>
 	<h1>superFidelity</h1>
 	<div id="container">
-		
-		<input type="range" min="100" max="500" step="10" class="LowPassFilter" />
-		
 		<section class="playerWrapper">
 			<section id="play">
 	        	<button type="button" id="button">&#9654;</button>
@@ -27,10 +25,16 @@
 			<div id="sequence-wrapper">
             	<canvas id="sequence" width="640" height="60"></canvas>
           	</div>
-		
+			<div id="bars">
+				<div id="control">
+					
+				</div>
+			</div>
 		</section>
 	</div>
 	<script data-main="assets/js/main.js" src="libs/js/require.js"></script>
-	<script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
+	<script src="assets/js/knobs/knobKnob/transform.js"></script>
+	<script src="assets/js/knobs/knobKnob/knobKnob.jquery.js"></script>
+	<script src="assets/js/knobs/script.js"></script>
 </body>
 </html>
