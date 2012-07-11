@@ -19,12 +19,16 @@
 			<section id="play">
 	        	<button type="button" id="button">&#9654;</button>
 		    </section>
-		    <div id="ruler-wrapper">
-	        	<canvas id="ruler" width="640" height="20"></canvas>
-	        </div>
-			<div id="sequence-wrapper">
-            	<canvas id="sequence" width="640" height="60"></canvas>
-          	</div>
+
+		    <section class="stepSequencer">
+			    <div id="ruler-wrapper">
+		        	<canvas id="ruler" width="640" height="20"></canvas>
+		        </div>
+				<div id="sequence-wrapper">
+	            	<canvas id="sequence" width="640" height="60"></canvas>
+	          	</div>
+			</section>
+
 			<div id="bars">
 				<div id="control">
 					
@@ -33,8 +37,9 @@
 		</section>
 	</div>
 	<script data-main="assets/js/main.js" src="libs/js/require.js"></script>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script src="assets/js/knobs/knobKnob/transform.js"></script>
 	<script src="assets/js/knobs/knobKnob/knobKnob.jquery.js"></script>
-	<script src="assets/js/knobs/script.js"></script>
+	<script src="assets/js/knobs/js/script.js"></script>
 </body>
 </html>
