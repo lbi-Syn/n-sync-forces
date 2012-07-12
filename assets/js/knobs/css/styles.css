@@ -57,7 +57,7 @@ section, footer{
 	width: 228px;
 }
 
-#control{
+.control{
 	width:90px;
 	height:90px;
 	position:absolute;

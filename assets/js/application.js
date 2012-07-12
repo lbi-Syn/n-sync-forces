@@ -1,6 +1,8 @@
 define([
         'jquery',
-        'modules/canvas_app.module'
+        'modules/canvas_app.module',
+        'knobKnob',
+        'knobTransform'
 	],
 	function ($, canvasApp) {
 		"use strict";
@@ -37,6 +39,19 @@ define([
 						xClick = Math.floor(xClick / noteWidth);
 						yClick = Math.floor(yClick / noteHeight);
 						canvasApp.togglePixel(xClick, yClick);
+					});
+					
+					$('.control').knobKnob({
+						snap : 5,
+						value: 0,
+						turn : function(ratio){
+							var exactAmount,
+								filterAmount;
+				
+							exactAmount = ratio * 100;
+							filterAmount = Math.round(exactAmount);
+							console.log('filterAmount = ', filterAmount);
+						}
 					});
 
 					canvasApp.drawRuler();
