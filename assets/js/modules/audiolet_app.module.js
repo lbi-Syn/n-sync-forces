@@ -10,8 +10,9 @@ define([
 		// var bufferSize = 65536;
 		// var sampleRate = 44100;
 
-		var bufferSize = 20000;
-		var sampleRate = 20000;
+		var bufferSize = 10000;
+		var sampleRate = 10000;
+
 		// calculate the latency so it can be later used to synchronize the audio
 		// with the graphics.
 		var latency = 1000 * bufferSize / sampleRate;
@@ -80,6 +81,11 @@ define([
 			channels[1].pan = new Pan(audiolet, 0.65);
 			channels[2].pan = new Pan(audiolet, 0.40);
 
+			
+			return channels;
+		}
+
+		function _play() {
 			// Connect it all up
 			//
 			// output of trigger to input of player
@@ -127,6 +133,7 @@ define([
 											0, 0, 0, 0,   1, 0, 0, 0,
 											0, 1, 0, 0,   2, 0, 0, 1], Infinity);
 
+			
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
 			audiolet.scheduler.play([channels[0].pattern], channels[0].duration,
@@ -145,12 +152,12 @@ define([
 					// to make up for latency, the animate function will be called
 					// after latency milliseconds.
 					// if (canvasApp !== undefined) {
-					// 	setTimeout(canvasApp.animate(), latency);
+					//		setTimeout(canvasApp.animate(), latency);
 					// }
 					// re-trigger the sample
 					channels[0].trigger.trigger.setValue(1);
 
-				}.bind(this)
+				}
 			);
 
 			audiolet.scheduler.play([channels[1].pattern], channels[1].duration,
@@ -167,7 +174,7 @@ define([
 					// re-trigger the sample
 					channels[1].trigger.trigger.setValue(1);
 
-				}.bind(this)
+				}
 			);
 
 			audiolet.scheduler.play([channels[2].pattern], channels[2].duration,
@@ -184,14 +191,23 @@ define([
 					// re-trigger the sample
 					channels[2].trigger.trigger.setValue(1);
 
-				}.bind(this)
+				}
 			);
+		}
 
-			return channels;
+		function _pause() {
+			//ToDo
+		}
+
+		function _stop() {
+			//ToDo
 		}
 
 		return {
-			init: _init
+			init: _init,
+			play: _play,
+			pause: _pause,
+			stop: _stop
 		};
 	}
 );

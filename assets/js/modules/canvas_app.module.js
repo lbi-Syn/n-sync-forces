@@ -89,7 +89,7 @@ define([
 		function _drawRuler() {
 			var ruler = $('#ruler');
 			if (ruler[0] !== undefined) {
-	 			var rulerContext = ruler[0].getContext("2d");
+				var rulerContext = ruler[0].getContext("2d");
 
 				//rulerContext.fillStyle = noteSoftColor;
 				//rulerContext.fillRect(0, 0, ruler.width(), ruler.height());
@@ -115,8 +115,17 @@ define([
 			}
 		}
 
+		function _pause() {
+			audioletApp.pause();
+		}
+
+		function _stop() {
+			audioletApp.stop();
+		}
+
 		return {
 			initCanvas: _initCanvas,
+			pause: _pause,
 			draw: _draw,
 			animate: _animate,
 			togglePixel: _togglePixel,

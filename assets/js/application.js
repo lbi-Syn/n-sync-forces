@@ -1,10 +1,11 @@
 define([
         'jquery',
         'modules/canvas_app.module',
+        'modules/audiolet_app.module',
         'knobKnob',
         'knobTransform'
 	],
-	function ($, canvasApp) {
+	function ($, canvasApp, audioletApp) {
 		"use strict";
 
 		var patternLength = 32;
@@ -15,20 +16,32 @@ define([
 
 				$(document).ready(function() {
 					var canvas = $('#sequence'),
-						button = $('#button'),
+						btn_play = $('#button_play'),
+						btn_pause = $('#button_pause'),
+						btn_stop = $('#button_stop'),
 						context = canvas[0].getContext("2d"),
 						noteWidth = canvas.width() / patternLength,
 						noteHeight = canvas.height() / numRows;
 
 					
+					audioletApp.init();
+					btn_play.click(function(e) {
+						audioletApp.play();
 
-					button.click(function(e) {
-						canvasApp.initCanvas({
-							canvas: canvas,
-							context: context,
-							noteWidth: noteWidth,
-							noteHeight: noteHeight
-						});
+						// canvasApp.initCanvas({
+						// 	canvas: canvas,
+						// 	context: context,
+						// 	noteWidth: noteWidth,
+						// 	noteHeight: noteHeight
+						// });
+					});
+
+					btn_pause.click(function(e) {
+						audioletApp.pause();
+					});
+
+					btn_stop.click(function(e) {
+						audioletApp.stop();
 					});
 
 					canvas.click(function(e) {
