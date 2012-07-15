@@ -27,7 +27,8 @@ define([
 					gain: null,
 					pan: null,
 					duration: null,
-					pattern: null
+					pattern: null,
+					scheduler: null
 				},
 				{
 					buffer: null,
@@ -36,7 +37,8 @@ define([
 					gain: null,
 					pan: null,
 					duration: null,
-					pattern: null
+					pattern: null,
+					scheduler: null
 				},
 				{
 					buffer: null,
@@ -45,7 +47,8 @@ define([
 					gain: null,
 					pan: null,
 					duration: null,
-					pattern: null
+					pattern: null,
+					scheduler: null
 				}
 			];
 
@@ -136,7 +139,7 @@ define([
 			
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
-			audiolet.scheduler.play([channels[0].pattern], channels[0].duration,
+			channels[0].scheduler = audiolet.scheduler.play([channels[0].pattern], channels[0].duration,
 				function(pattern, duration) {
 
 					// apply amplitude
@@ -160,7 +163,7 @@ define([
 				}
 			);
 
-			audiolet.scheduler.play([channels[1].pattern], channels[1].duration,
+			channels[1].scheduler = audiolet.scheduler.play([channels[1].pattern], channels[1].duration,
 				function(pattern) {
 
 					// apply amplitude
@@ -177,7 +180,7 @@ define([
 				}
 			);
 
-			audiolet.scheduler.play([channels[2].pattern], channels[2].duration,
+			channels[2].scheduler = audiolet.scheduler.play([channels[2].pattern], channels[2].duration,
 				function(pattern) {
 
 					// apply amplitude
@@ -190,7 +193,6 @@ define([
 					}
 					// re-trigger the sample
 					channels[2].trigger.trigger.setValue(1);
-
 				}
 			);
 		}
@@ -200,7 +202,10 @@ define([
 		}
 
 		function _stop() {
-			//ToDo
+			audiolet.scheduler.remove(channels[0].scheduler);
+			audiolet.scheduler.remove(channels[1].scheduler);
+			audiolet.scheduler.remove(channels[2].scheduler);
+			_init();
 		}
 
 		return {
