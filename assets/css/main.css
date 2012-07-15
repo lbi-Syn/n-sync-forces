@@ -89,6 +89,7 @@ h1{
   min-height: 150px;
   position: relative;
   width: 100%;
+  border:1px solid #D9D9D9;
 }
 .stepSequencer div{
   position:absolute;

@@ -1,15 +1,12 @@
 define([
-        'jquery',
-        'modules/audiolet_app.module'
+        'jquery'
 	],
-	function ($, audioletApp) {
+	function ($) {
 		"use strict";
 		
 		// structural variables:
 		var numRows = 3;
 		var rows = new Array(numRows);
-		// keep a list of sample names:
-		var sample = {"bass_drum":0, "hi_hat":1, "snare_drum":2};
 
 		var patternLength = 32;
 		var activeColumn = 0;
@@ -19,29 +16,28 @@ define([
 		var context = null;
 		var channels = null;
 
-		var noteWidth = 10;
-		var noteHeight = 10;
+		var noteWidth = null;
+		var noteHeight = null;
 
-		var noteSoftColor = '#222222';
-		var noteMedColor = '#f26c7b';
-		var noteLoudColor = '#8f323c';
+		var noteSoftColor = '#ffffff';
+		var noteMedColor = '#49A2D0';
+		var noteLoudColor = '#DBF0FB';
 
 		function _initCanvas(options) {
+			if (options !== undefined) {
+				canvas = options.canvas;
+				context = options.context;
+				noteWidth = options.noteWidth;
+				noteHeight = options.noteHeight;
+			}
 
-			channels = audioletApp.init();
+			context.clearRect(0, 0, canvas.width(), canvas.height());
 
-			/* OPTIONS FUNCITONALITY ADDED BY ANDY */
-			canvas = options.canvas;
-			context = options.context;
-			noteWidth = options.noteWidth;
-			noteHeight = options.noteHeight;
+			rows[0] = options.channels[0].pattern.list;
+			rows[1] = options.channels[1].pattern.list;
+			rows[2] = options.channels[2].pattern.list;
 
-			// get patterns list:
-			rows[sample.bass_drum] = channels[0].pattern.list;
-			rows[sample.hi_hat] = channels[1].pattern.list;
-			rows[sample.snare_drum] = channels[2].pattern.list;
-
-			patternLength = rows[sample.bass_drum].length;
+			patternLength = rows[0].length;
 
 			_draw();
 		}
@@ -86,50 +82,19 @@ define([
 			// update audiolet sequence
 		}
 
-		function _drawRuler() {
-			var ruler = $('#ruler');
-			if (ruler[0] !== undefined) {
-				var rulerContext = ruler[0].getContext("2d");
-
-				//rulerContext.fillStyle = noteSoftColor;
-				//rulerContext.fillRect(0, 0, ruler.width(), ruler.height());
-				for (var i = 0; i <= patternLength; i++) {
-					rulerContext.strokeStyle = "#fff";
-					rulerContext.stroke();
-					// draw half notes:
-					if (i % 8 == 0) {
-						rulerContext.moveTo(i * noteWidth, 0);
-						rulerContext.lineTo(i * noteWidth, ruler.height());
-					} else if (i % 4 == 0) {
-						rulerContext.moveTo(i * noteWidth, 0);
-						rulerContext.lineTo(i * noteWidth, ruler.height() * 0.5);
-					} else if (i % 2 == 0) {
-						rulerContext.moveTo(i * noteWidth, 0);
-						rulerContext.lineTo(i * noteWidth, ruler.height() * 0.35);
-					} else {
-						rulerContext.moveTo(i * noteWidth, 0);
-						rulerContext.lineTo(i * noteWidth, ruler.height() * 0.15);
-					}
-				}
-				// rulerContext.strokeRect(0, 0, ruler.width(), ruler.height());
-			}
-		}
-
-		function _pause() {
-			audioletApp.pause();
-		}
-
 		function _stop() {
-			audioletApp.stop();
+			activeColumn = 0;
+			context.clearRect(0, 0, canvas.width(), canvas.height());
+			_draw();
+			context.fillRect(activeColumn * noteWidth, 0, 1, noteHeight * numRows);
 		}
 
 		return {
 			initCanvas: _initCanvas,
-			pause: _pause,
+			stop: _stop,
 			draw: _draw,
 			animate: _animate,
-			togglePixel: _togglePixel,
-			drawRuler: _drawRuler
+			togglePixel: _togglePixel
 		};
 	}
 );

@@ -22,26 +22,26 @@ define([
 						context = canvas[0].getContext("2d"),
 						noteWidth = canvas.width() / patternLength,
 						noteHeight = canvas.height() / numRows;
-
 					
-					audioletApp.init();
-					btn_play.click(function(e) {
-						audioletApp.play();
+					var channels = audioletApp.init();
+					canvasApp.initCanvas({
+						canvas: canvas,
+						context: context,
+						noteWidth: noteWidth,
+						noteHeight: noteHeight,
+						channels: channels
+					});
 
-						// canvasApp.initCanvas({
-						// 	canvas: canvas,
-						// 	context: context,
-						// 	noteWidth: noteWidth,
-						// 	noteHeight: noteHeight
-						// });
+					btn_play.click(function(e) {
+						audioletApp.play(canvasApp);
 					});
 
 					btn_pause.click(function(e) {
-						audioletApp.pause();
+						audioletApp.pause(canvasApp);
 					});
 
 					btn_stop.click(function(e) {
-						audioletApp.stop();
+						audioletApp.stop(canvasApp);
 					});
 
 					canvas.click(function(e) {
@@ -66,8 +66,6 @@ define([
 							console.log('filterAmount = ', filterAmount);
 						}
 					});
-
-					canvasApp.drawRuler();
 				});
 				
 			}

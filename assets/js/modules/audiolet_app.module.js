@@ -17,6 +17,7 @@ define([
 		// with the graphics.
 		var latency = 1000 * bufferSize / sampleRate;
 		var audioletReady = false;
+		var animateTimeout = null;
 
 		var audiolet = null,
 			channels = [
@@ -84,31 +85,6 @@ define([
 			channels[1].pan = new Pan(audiolet, 0.65);
 			channels[2].pan = new Pan(audiolet, 0.40);
 
-			
-			return channels;
-		}
-
-		function _play() {
-			// Connect it all up
-			//
-			// output of trigger to input of player
-			channels[0].trigger.connect(channels[0].player, 0, 1);
-			channels[1].trigger.connect(channels[1].player, 0, 1);
-			channels[2].trigger.connect(channels[2].player, 0, 1);
-			// output of player to input of gain
-			channels[0].player.connect(channels[0].gain);
-			channels[1].player.connect(channels[1].gain);
-			channels[2].player.connect(channels[2].gain);
-			// output of gain to input of pan
-			channels[0].gain.connect(channels[0].pan);
-			channels[1].gain.connect(channels[1].pan);
-			channels[2].gain.connect(channels[2].pan);
-			// output of pan to general output
-			// all three signals will be added together when connected to the output
-			channels[0].pan.connect(audiolet.output);
-			channels[1].pan.connect(audiolet.output);
-			channels[2].pan.connect(audiolet.output);
-
 			// Create default patterns:
 			//
 			// Each durations object specifies the duration of one note.
@@ -135,7 +111,32 @@ define([
 											0, 0, 0, 0,   2, 0, 0, 0,
 											0, 0, 0, 0,   1, 0, 0, 0,
 											0, 1, 0, 0,   2, 0, 0, 1], Infinity);
+			
+			
 
+			return channels;
+		}
+
+		function _play(canvasApp) {
+			// Connect it all up
+			//
+			// output of trigger to input of player
+			channels[0].trigger.connect(channels[0].player, 0, 1);
+			channels[1].trigger.connect(channels[1].player, 0, 1);
+			channels[2].trigger.connect(channels[2].player, 0, 1);
+			// output of player to input of gain
+			channels[0].player.connect(channels[0].gain);
+			channels[1].player.connect(channels[1].gain);
+			channels[2].player.connect(channels[2].gain);
+			// output of gain to input of pan
+			channels[0].gain.connect(channels[0].pan);
+			channels[1].gain.connect(channels[1].pan);
+			channels[2].gain.connect(channels[2].pan);
+			// output of pan to general output
+			// all three signals will be added together when connected to the output
+			channels[0].pan.connect(audiolet.output);
+			channels[1].pan.connect(audiolet.output);
+			channels[2].pan.connect(audiolet.output);
 			
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
@@ -154,12 +155,11 @@ define([
 					// draw animation of drum machine.
 					// to make up for latency, the animate function will be called
 					// after latency milliseconds.
-					// if (canvasApp !== undefined) {
-					//		setTimeout(canvasApp.animate(), latency);
-					// }
+					if (canvasApp !== undefined) {
+						animateTimeout = setTimeout(canvasApp.animate, latency);
+					}
 					// re-trigger the sample
 					channels[0].trigger.trigger.setValue(1);
-
 				}
 			);
 
@@ -176,13 +176,11 @@ define([
 					}
 					// re-trigger the sample
 					channels[1].trigger.trigger.setValue(1);
-
 				}
 			);
 
 			channels[2].scheduler = audiolet.scheduler.play([channels[2].pattern], channels[2].duration,
 				function(pattern) {
-
 					// apply amplitude
 					if (pattern == 2) {
 						channels[2].gain.gain.setValue(1.00);
@@ -198,14 +196,34 @@ define([
 		}
 
 		function _pause() {
-			//ToDo
+
+			audiolet.scheduler.stop(channels[0].scheduler);
+			audiolet.scheduler.stop(channels[1].scheduler);
+			audiolet.scheduler.stop(channels[2].scheduler);
+
+			channels[0].pan.disconnect(audiolet.output);
+			channels[1].pan.disconnect(audiolet.output);
+			channels[2].pan.disconnect(audiolet.output);
+
+			channels[0].gain.disconnect(channels[0].pan);
+			channels[1].gain.disconnect(channels[1].pan);
+			channels[2].gain.disconnect(channels[2].pan);
+
+			channels[0].player.disconnect(channels[0].gain);
+			channels[1].player.disconnect(channels[1].gain);
+			channels[2].player.disconnect(channels[2].gain);
+			
+			channels[0].trigger.disconnect(channels[0].player, 0, 1);
+			channels[1].trigger.disconnect(channels[1].player, 0, 1);
+			channels[2].trigger.disconnect(channels[2].player, 0, 1);
+
+			clearTimeout(animateTimeout);
 		}
 
-		function _stop() {
-			audiolet.scheduler.remove(channels[0].scheduler);
-			audiolet.scheduler.remove(channels[1].scheduler);
-			audiolet.scheduler.remove(channels[2].scheduler);
+		function _stop(canvasApp) {
+			_pause();
 			_init();
+			setTimeout(canvasApp.stop, 1000);
 		}
 
 		return {
