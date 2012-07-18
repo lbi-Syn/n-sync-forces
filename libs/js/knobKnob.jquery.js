@@ -42,7 +42,13 @@
 			knob.on('mousedown touchstart', function(e){
 			
 				e.preventDefault();
-			
+				
+				$me = $(this);
+				
+				var $knobTop = $me.find('.top');
+				var $knobBase = $me.find('.base');
+				
+				
 				var offset = knob.offset();
 				var center = {
 					y : offset.top + knob.height()/2,
@@ -55,6 +61,8 @@
 				knob.on('mousemove.rem touchmove.rem',function(e){
 					
 					e = (e.originalEvent.touches) ? e.originalEvent.touches[0] : e;
+					
+					$knobBase.css('box-shadow','2px 2px 0 #C9BB3F, 6px 4px 5px #E6E2E2');
 					
 					a = center.y - e.pageY;
 					b = center.x - e.pageX;
@@ -104,7 +112,7 @@
 				doc.on('mouseup.rem  touchend.rem',function(){
 					knob.off('.rem');
 					doc.off('.rem');
-					
+					$knobBase.css('box-shadow','0 5px 0 #4A5056, 5px 5px 5px #000000');
 					// Saving the current rotation
 					rotation = currentDeg;
 					

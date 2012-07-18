@@ -1,8 +1,7 @@
 body{
 	font-family: 'Engagement', cursive;
 	background: rgb(67,107,140); /* Old browsers */
-	background: -moz-linear-gradient(center top , #436B8C 0%, #436B8C 30%, #FFFFFF 30%, #FFFFFF 100%) repeat-x scroll 0 0 transparent; 
-	min-height: 700px;
+	background: -moz-linear-gradient(center top , #436B8C 0%, #436B8C 100%, #FFFFFF 30%, #FFFFFF 100%) repeat-x scroll 0 0 transparent; 
 }
 
 #container{
@@ -13,7 +12,7 @@ body{
     min-height: 400px;
     padding: 50px;
     position: relative;
-    width: 740px
+    width: 960px
 }
 
 h1{
@@ -28,8 +27,8 @@ h1{
 .playerWrapper{
 	border-radius: 5px 5px 0 0;
     box-shadow: 0 7px 18px -11px rgba(0, 0, 0, 0.3) inset;
-    min-height: 210px;
-    padding: 20px;
+    overflow:hidden;
+    padding: 30px 75px;
 }
 
 #play, #stop, #pause{
@@ -88,7 +87,7 @@ h1{
   margin: 50px 0;
   min-height: 150px;
   position: relative;
-  width: 100%;
+  width: 700px;
   border:1px solid #D9D9D9;
   border-width:1px 0 0 1px;
 }
