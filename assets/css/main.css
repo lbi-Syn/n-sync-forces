@@ -104,3 +104,46 @@ h1{
   float:left;
   width: 100%;
 }
+
+
+/* -------------- progress -------------- */
+
+.frequencyBar{
+  display: inline-block;
+  float: left;
+  margin: 50px 3em;
+  min-height: 150px;
+  position: relative;
+  width: 700px;
+  
+}
+
+.frequencyBar li{
+	display:inline-block;
+	width:120px;
+}
+
+progress {
+	-moz-appearance: none;
+	position: relative;
+	width: 150px;
+	height: 17px;
+	border-radius: 5px; 	
+	padding: 4px;   
+    background: #000;
+	-moz-box-shadow: 0 1px 0 hsla(0,0%,100%,.1);
+    -moz-transform:translate(-50px, 50px) rotate(-90deg);
+    -moz-box-shadow: -1px 0 0 rgba(255, 255, 255, .08);
+	-moz-transform-origin: center 8px;
+	border:none;
+    -moz-box-reflect: below -3px -moz-radial-gradient( 50% 70%, 50% 25%, hsla(0,0%,0%,.2) 0%, hsla(0,0%,0%,0) 95% );
+    }
+
+
+progress::-moz-progress-bar {
+    background-color: -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );	
+     background-size: 2px 5px;
+    background-image: 	-moz-linear-gradient( 0deg,  hsla(0,0%,0%,.4) 1px, hsla(0,0%,0%,0) 1px ),
+    		            -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );	
+   }
+

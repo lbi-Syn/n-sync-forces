@@ -17,7 +17,7 @@
 	<div id="container">
 		<section class="playerWrapper">
 			<section id="play">
-	        	<button type="button" id="button_play">&#9654;</button>
+	        	<button type="button" id="button_play">►</button>
 		    </section>
 		    <section id="pause">
 	        	<button type="button" id="button_pause">&#9646;&#9646;</button>
@@ -33,6 +33,29 @@
 				<div id="sequence-wrapper">
 	            	<canvas id="sequence" width="700" height="150"></canvas>
 	          	</div>
+			</section>
+			
+			<section class="frequencyBar">
+				<ul>
+					
+					<li>
+						<progress value="0.3" max="1"></progress>
+					</li>
+					
+					<li>
+						<progress value="0.2" max="1">></progress>
+					</li>
+					
+					<li>
+						<progress value="0.9" max="1">></progress>
+					</li>
+					<li>
+						<progress value="0.2" max="1">></progress>
+					</li>
+					<li>
+						<progress value="0.3" max="1">></progress>
+					</li>
+				</ul>
 			</section>
 
 			<div id="bars">
