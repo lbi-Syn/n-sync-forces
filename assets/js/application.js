@@ -19,15 +19,15 @@ function Control(options){
 					var exactAmount,
 						filterAmount;
 		
-					if(options.onTurn){
-						options.onTurn(ratio);
-					}
+					// if(options.onTurn){
+						// options.onTurn(ratio);
+					// }
 		
 					exactAmount = ratio * 100;
 					filterAmount = Math.round(exactAmount);
 					console.log('filterAmount = ', filterAmount);
 					
-					self.el.find('.volume progress').attr('value',ratio);
+					self.el.find('.freq progress').attr('value',ratio);
 				}
 			});
 		}
