@@ -1,3 +1,39 @@
+function Control(options){
+	return {
+		init: function(){
+		
+			this.render();
+			return this;
+		
+		},
+		render: function(){
+			
+			this.el = $('<section/>').html($('#controlsTemplate').html()).addClass('bar-controller');
+			
+			var self = this;
+			
+			this.el.find('.control').knobKnob({
+				snap : 5,
+				value: 0,
+				turn : function(ratio){
+					var exactAmount,
+						filterAmount;
+		
+					if(options.onTurn){
+						options.onTurn(ratio);
+					}
+		
+					exactAmount = ratio * 100;
+					filterAmount = Math.round(exactAmount);
+					console.log('filterAmount = ', filterAmount);
+					
+					self.el.find('.volume progress').attr('value',ratio);
+				}
+			});
+		}
+	};
+}
+
 define([
         'jquery',
         'modules/canvas_app.module',
@@ -5,6 +41,8 @@ define([
         'knobKnob',
         'knobTransform'
 	],
+	
+	
 	function ($, canvasApp, audioletApp) {
 		"use strict";
 
@@ -22,6 +60,25 @@ define([
 						context = canvas[0].getContext("2d"),
 						noteWidth = canvas.width() / patternLength,
 						noteHeight = canvas.height() / numRows;
+						
+						var controls = [];
+						
+						var control = new Control({
+							onTurn: function(vol){
+							}
+						});
+						$('#container > section').append(control.init().el);
+						controls.push(control);
+						
+						
+						control = new Control({
+							onTurn: function(vol){
+							}
+						});
+						$('#container > section').append(control.init().el);
+						controls.push(control);
+						
+						
 					
 					var channels = audioletApp.init();
 					canvasApp.initCanvas({
@@ -54,18 +111,7 @@ define([
 						canvasApp.togglePixel(xClick, yClick);
 					});
 					
-					$('.control').knobKnob({
-						snap : 5,
-						value: 0,
-						turn : function(ratio){
-							var exactAmount,
-								filterAmount;
-				
-							exactAmount = ratio * 100;
-							filterAmount = Math.round(exactAmount);
-							console.log('filterAmount = ', filterAmount);
-						}
-					});
+
 				});
 				
 			}

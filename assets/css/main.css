@@ -97,12 +97,26 @@ h1{
   left:0;
   width:100%;
 }
+
 #ruler-wrapper{
   box-shadow: 0 7px 18px -11px rgba(0, 0, 0, 0.3) inset;
 }
-#bars{
-  float:left;
-  width: 100%;
+
+.bar-controller{
+	display: inline-block;
+    margin: 0 5px 0 16px;
+    min-height: 90px;
+    overflow: hidden;
+    padding: 5px;
+    position: relative;
+    width: 15%;
+}
+
+.bars{
+  margin: 0 15px 0 5px;
+    min-height: 95px;
+    overflow: hidden;
+    width: 84%;
 }
 
 
@@ -110,12 +124,16 @@ h1{
 
 .frequencyBar{
   display: inline-block;
-  float: left;
-  margin: 50px 3em;
-  min-height: 150px;
-  position: relative;
-  width: 700px;
-  
+    margin: 0;
+    min-height: 160px;
+    overflow: hidden;
+    padding: 6px 0 0;
+    position: relative;
+    width: 66%;
+}
+
+.frequencyBar ul{
+	 padding: 0 0 0 10px;
 }
 
 .frequencyBar li{
@@ -141,9 +159,11 @@ progress {
 
 
 progress::-moz-progress-bar {
+	box-shadow:0 1px 17px #5BACD6 inset;
     background-color: -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );	
      background-size: 2px 5px;
     background-image: 	-moz-linear-gradient( 0deg,  hsla(0,0%,0%,.4) 1px, hsla(0,0%,0%,0) 1px ),
     		            -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );	
+    
    }
 

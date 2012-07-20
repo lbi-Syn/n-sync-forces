@@ -96,7 +96,7 @@
 					
 					currentDeg = tmp;
 					lastDeg = tmp;
-		
+					
 					knobTop.css('transform','rotate('+(currentDeg)+'deg)');
 					options.turn(currentDeg/359);
 				});

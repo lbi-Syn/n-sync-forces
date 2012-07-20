@@ -35,34 +35,24 @@
 	          	</div>
 			</section>
 			
-			<section class="frequencyBar">
+			<!-- <section class="frequencyBar volume">
 				<ul>
 					
 					<li>
 						<progress value="0.3" max="1"></progress>
 					</li>
-					
-					<li>
-						<progress value="0.2" max="1">></progress>
-					</li>
-					
-					<li>
-						<progress value="0.9" max="1">></progress>
-					</li>
-					<li>
-						<progress value="0.2" max="1">></progress>
-					</li>
-					<li>
-						<progress value="0.3" max="1">></progress>
-					</li>
 				</ul>
-			</section>
-
-			<div id="bars">
-				<div class="control">
 					
+			</section>
+			
+			<section class="bar-container">
+				<div class="bars">
+					<div class="control">
+						
+					</div>
 				</div>
-			</div>
+			</section> -->
+			
 		</section>
 	</div>
 	<script data-main="assets/js/main.js" src="libs/js/require.js"></script>
@@ -70,5 +60,15 @@
 <!-- 	<script src="assets/js/knobs/knobKnob/transform.js"></script>
 	<script src="assets/js/knobs/knobKnob/knobKnob.jquery.js"></script>
 	<script src="assets/js/knobs/js/script.js"></script> -->
+	
+	<script id="controlsTemplate" type="text/x-jquery-tmpl">
+    		<section class="frequencyBar volume">
+    			<ul><li><progress value="0.3" max="1"></progress></li></ul>
+    			
+    		</section>
+    		<div class="bars">
+    			<div class="control"></div>
+			</div>
+	</script>
 </body>
 </html>
