@@ -105,7 +105,7 @@ h1{
 .bar-controller{
 	display: inline-block;
     margin: 0 5px 0 16px;
-    min-height: 90px;
+    min-height: 330px;
     overflow: hidden;
     padding: 5px;
     position: relative;
@@ -167,3 +167,18 @@ progress::-moz-progress-bar {
     
    }
 
+
+.controller-lb{
+ display: block;
+    margin: 4px;
+    position: relative;
+    width: 100%;
+}
+
+.controller-lb span{
+	 display: block;
+    font-family: tahoma;
+    font-size: 1.2em;
+    left: 25px;
+    position: absolute;
+}
