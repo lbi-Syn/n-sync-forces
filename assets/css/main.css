@@ -154,6 +154,7 @@ h1{
 }
 #bars{
   background-attachment: scroll;
+  background-clip: border-box;
   background-color: transparent;
   background-image: url("../img/wood_panel.jpg");
   background-origin: padding-box;
@@ -185,12 +186,14 @@ h1{
 }
 
 .frequencyBar li{
+  display:inline-block;
   width:120px;
 }
 
 progress {
   -moz-appearance: none;
   position: relative;
+  width: 150px;
   height: 17px;
   border-radius: 5px;   
   padding: 4px;   
