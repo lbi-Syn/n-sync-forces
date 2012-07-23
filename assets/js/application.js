@@ -1,6 +1,6 @@
 
 
-function Control(options,value){
+function Control(options,value, audioletApp){
 	return {
 		init: function(){
 		
@@ -15,25 +15,38 @@ function Control(options,value){
 			var self = this;
 			
 			this.el.find('.controller-lb span').text(options);
-			
 			this.el.find('.freq progress').attr('value',value);  //This isnt finished yet...
 			
 			//alert(options);
 			this.el.find('.control').knobKnob({
-				snap : 5,
+				snap : 1,
 				value: 0,
 				turn : function(ratio){
 					var exactAmount,
-						filterAmount;
-		
-					// if(options.onTurn){
-						// options.onTurn(ratio);
-					// }
-		
+						filterAmount,
+						filters = {};
+
 					exactAmount = ratio * 100;
 					filterAmount = Math.round(exactAmount);
-					console.log('filterAmount = ', filterAmount);
-					
+
+					switch (options){
+						case 'Sine' :
+							filters.sine = filterAmount;
+						break;
+						case 'Low Pass' :
+							filters.lowPass = (filterAmount * 10);
+						break;
+						case 'Gain' :
+							filters.gain = (ratio * 100);
+						break;	
+						case 'Pan' :
+							filters.pan = (filterAmount / 100);
+						break;
+						case 'Tempo' :
+							filters.tempo = filterAmount;
+						break;
+					}
+					audioletApp.init(filters);
 					self.el.find('.freq progress').attr('value',ratio);
 				}
 			});
@@ -69,33 +82,7 @@ define([
 						noteHeight = canvas.height() / numRows;
 						
 						var controls = [];
-						
-						var control = new Control('Volume',0.4);
-						
-						$('#container > section').append(control.init().el);
-						controls.push(control);
-						
-						
-						control = new Control('Base',0.3);
-						
-						$('#container > section').append(control.init().el);
-						controls.push(control);
-						
-						control = new Control('Filter',0.4);
-						
-						$('#container > section').append(control.init().el);
-						controls.push(control);
-						
-						control = new Control('Freq1',0.8);
-						$('#container > section').append(control.init().el);
-						controls.push(control);
-						
-						control = new Control('Freq2',0.2);
-						$('#container > section').append(control.init().el);
-						controls.push(control);
-						
-						
-					
+
 					var channels = audioletApp.init();
 					canvasApp.initCanvas({
 						canvas: canvas,
@@ -127,6 +114,28 @@ define([
 						canvasApp.togglePixel(xClick, yClick);
 					});
 					
+					var control = new Control('Tempo',0.4, audioletApp);
+						
+					$('#container > #bars').append(control.init().el);
+					controls.push(control);
+					
+					control = new Control('Pan',0.3, audioletApp);
+					
+					$('#container > #bars').append(control.init().el);
+					controls.push(control);
+					
+					control = new Control('Gain',0.4, audioletApp);
+					
+					$('#container > #bars').append(control.init().el);
+					controls.push(control);
+					
+					control = new Control('Low Pass',0.8, audioletApp);
+					$('#container > #bars').append(control.init().el);
+					controls.push(control);
+					
+					control = new Control('Sine',0.2, audioletApp);
+					$('#container > #bars').append(control.init().el);
+					controls.push(control);
 
 				});
 				

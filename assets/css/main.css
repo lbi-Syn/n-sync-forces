@@ -1,43 +1,59 @@
 body{
-	font-family: 'Engagement', cursive;
-	background: rgb(67,107,140); /* Old browsers */
-	background: -moz-linear-gradient(center top , #436B8C 0%, #436B8C 100%, #FFFFFF 30%, #FFFFFF 100%) repeat-x scroll 0 0 transparent; 
+  background-attachment: scroll;
+  background-clip: border-box;
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(84,83,83,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  font-family: 'Engagement',cursive;
 }
 
 #container{
-	background: none repeat scroll 0 0 #FFFFFF;
+    background-color: #2B2D2E;
+    background-image: url("../img/black-leather-texture.png");
     border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 9px 15px -14px rgba(0, 0, 0, 0.3), 0 7px 18px -5px rgba(0, 0, 0, 0.2) inset;
-    margin: 50px auto 0;
-    min-height: 400px;
+    box-shadow: 0 9px 6px -8px rgba(0, 0, 0, 0.8), 1px -21px 13px 23px rgba(0, 0, 0, 0.5) inset;
+    margin: 50px auto 100px;
+    min-height: 750px;
     padding: 50px;
     position: relative;
-    width: 960px
+    width: 740px;
 }
 
 h1{
-	color: #DBF0FB;
-    font-size: 74px;
-    font-weight: lighter;
-    margin: 0 auto;
-    position: relative;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-    width: 840px;
+  -moz-transform: rotate(-16deg);
+  color: #FCF0C4;
+  font-size: 122px;
+  font-weight: lighter;
+  margin: -60px auto 0 0;
+  position: relative;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  width: 840px;
 }
 .playerWrapper{
-	border-radius: 5px 5px 0 0;
-    box-shadow: 0 7px 18px -11px rgba(0, 0, 0, 0.3) inset;
-    overflow:hidden;
-    padding: 30px 75px;
+  background-color: #fff;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-image: url("../img/metal.png");
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 7px 18px -11px rgba(0, 0, 0, 0.3) inset, 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  padding: 20px 20px 45px;
+  text-align: center;
 }
 
 #play, #stop, #pause{
-	border-radius: 8px 8px 8px 8px;
-    box-shadow: 0 8px 0 #1A74A1, 0 9px 9px rgba(0, 0, 0, 0.35);
-    display: inline-block;
-    -moz-transition: -moz-box-shadow .2s ease-in-out;
-    margin: 0 4%;
-    width: 20%;
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 0 8px 0 #1A74A1, 0 9px 9px rgba(0, 0, 0, 0.35);
+  display: inline-block;
+  -moz-transition: -moz-box-shadow .2s ease-in-out;
+  margin: 0 4%;
+  width: 20%;
 }
 
 
@@ -52,44 +68,50 @@ h1{
     text-shadow: 0 -1px 1px rgba(19, 65, 88, 0.8);
     width: 100%;padding: 2%;
     width: 100%;
-  	display: inline-block;
-  	padding: 10px  20px;
-  	background: #3194c6;
-  	background: -moz-linear-gradient(#3194c6, #5bacd6);
-  	text-shadow: 0 -1px 1px rgba(19,65,88,.8);
-  	border-radius: 8px;
-  	-moz-transition: -moz-transform .2s ease-in-out;
+    display: inline-block;
+    padding: 10px  20px;
+    background: #3194c6;
+    background: -moz-linear-gradient(#3194c6, #5bacd6);
+    text-shadow: 0 -1px 1px rgba(19,65,88,.8);
+    border-radius: 8px;
+    -moz-transition: -moz-transform .2s ease-in-out;
 }
 
 #pause button{
-	padding-top:16px;
-	padding-bottom:10px;
+  padding-top:16px;
+  padding-bottom:10px;
 }
 
 #stop button{
-	padding-top:12px;
-	padding-bottom:10px;
+  padding-top:12px;
+  padding-bottom:10px;
 }
 
 
-#play button:active ,#stop button:active,#pause button:active {	
+#play button:active ,#stop button:active,#pause button:active { 
   box-shadow: 0 8px 0 #1A74A1, 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-#play button:active , #stop button:active , #pause button:active  {	
+#play button:active , #stop button:active , #pause button:active  { 
   -moz-transform: translate(0, 4px);
   transform: translate(0, 4px);
 }
 .stepSequencer{
-  background: none repeat scroll 0 0 #E6E6E6;
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #D9D9D9;
+  border-radius: 13px 13px 13px 13px;
+  border-style: solid;
+  border-width: 1px 0 0 1px;
   display: inline-block;
   float: left;
-  margin: 50px 0;
+  margin: 20px 0 30px;
   min-height: 150px;
   position: relative;
   width: 700px;
-  border:1px solid #D9D9D9;
-  border-width:1px 0 0 1px;
 }
 .stepSequencer div{
   position:absolute;
@@ -98,18 +120,30 @@ h1{
   width:100%;
 }
 
+#sequence-wrapper{
+  border-radius: 13px 13px 13px 13px;
+}
+#sequence-wrapper canvas{
+  border-radius: 13px 13px 13px 13px;
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.7);
+}
 #ruler-wrapper{
   box-shadow: 0 7px 18px -11px rgba(0, 0, 0, 0.3) inset;
+  display: none;
 }
 
 .bar-controller{
-	display: inline-block;
-    margin: 0 5px 0 16px;
-    min-height: 330px;
-    overflow: hidden;
-    padding: 5px;
-    position: relative;
-    width: 15%;
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.3), 0 0 10px 1px rgba(0, 0, 0, 0.5) inset;
+  display: inline-block;
+  margin: 0 5px 0 16px;
+  min-height: 330px;
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+  width: 15%;
 }
 
 .bars{
@@ -118,67 +152,90 @@ h1{
     overflow: hidden;
     width: 84%;
 }
+#bars{
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../img/wood_panel.jpg");
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.7) inset, 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  float: left;
+  padding: 2% 3% 1%;
+  width: 94%;
+}
 
 
 /* -------------- progress -------------- */
 
 .frequencyBar{
   display: inline-block;
-    margin: 0;
-    min-height: 160px;
-    overflow: hidden;
-    padding: 6px 0 0;
-    position: relative;
-    width: 66%;
+  margin: 0 0 0 4px;
+  min-height: 160px;
+  overflow: hidden;
+  padding: 6px 0 0;
+  position: relative;
+  width: 66%;
 }
 
 .frequencyBar ul{
-	 padding: 0 0 0 10px;
+   padding: 0 0 0 10px;
 }
 
 .frequencyBar li{
-	display:inline-block;
-	width:120px;
+  width:120px;
 }
 
 progress {
-	-moz-appearance: none;
-	position: relative;
-	width: 150px;
-	height: 17px;
-	border-radius: 5px; 	
-	padding: 4px;   
+  -moz-appearance: none;
+  position: relative;
+  height: 17px;
+  border-radius: 5px;   
+  padding: 4px;   
     background: #000;
-	-moz-box-shadow: 0 1px 0 hsla(0,0%,100%,.1);
+  -moz-box-shadow: 0 1px 0 hsla(0,0%,100%,.1);
     -moz-transform:translate(-50px, 50px) rotate(-90deg);
     -moz-box-shadow: -1px 0 0 rgba(255, 255, 255, .08);
-	-moz-transform-origin: center 8px;
-	border:none;
+  -moz-transform-origin: center 8px;
+  border:none;
     -moz-box-reflect: below -3px -moz-radial-gradient( 50% 70%, 50% 25%, hsla(0,0%,0%,.2) 0%, hsla(0,0%,0%,0) 95% );
     }
 
 
 progress::-moz-progress-bar {
-	box-shadow:0 1px 17px #5BACD6 inset;
-    background-color: -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );	
+  box-shadow:0 1px 17px #5BACD6 inset;
+    background-color: -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );  
      background-size: 2px 5px;
-    background-image: 	-moz-linear-gradient( 0deg,  hsla(0,0%,0%,.4) 1px, hsla(0,0%,0%,0) 1px ),
-    		            -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );	
+    background-image:   -moz-linear-gradient( 0deg,  hsla(0,0%,0%,.4) 1px, hsla(0,0%,0%,0) 1px ),
+                    -moz-linear-gradient( 90deg, hsla(0,0%,0%,1) 1px, hsla(0,0%,0%,0) 1px );  
     
    }
 
 
 .controller-lb{
- display: block;
-    margin: 4px;
-    position: relative;
+color: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    float: left;
+    font-size: 2.2em;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     width: 100%;
 }
-
-.controller-lb span{
-	 display: block;
-    font-family: tahoma;
-    font-size: 1.2em;
-    left: 25px;
-    position: absolute;
+span.label{
+  background-color: #C6C6C6;
+  background-image: url("../img/metal.png");
+  background-size: 100% 100%;
+  border-radius: 3px 3px 3px 3px;
+  box-shadow: 0 0 2px 3px #8D8E8E inset, 0 0 6px 3px rgba(0, 0, 0, 0.7);
+  color: #202121;
+  display: inline-block;
+  float: right;
+  font-size: 2.2em;
+  margin-top: 23px;
+  padding: 5px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #C6C7C8;
+  width: 150px;
 }

@@ -53,9 +53,30 @@ define([
 				}
 			];
 
-		function _init () {
+		function _init (object) {
+			var tempoValue, panValue, gainValue;
+
+			if (typeof object !== 'undefined'){
+				if(typeof object.tempo !== 'undefined'){
+					tempoValue = object.tempo;
+				}
+				if(typeof object.gain !== 'undefined'){
+					gainValue = object.gain;
+				}
+				if(typeof object.pan !== 'undefined'){
+					panValue = object.pan;
+				}
+			}
+
+			if(typeof tempoValue === 'undefined' ){
+				tempoValue = 100;
+			}if(typeof gainValue === 'undefined' ){
+			 	gainValue = 1.80; 
+			}if(typeof panValue === 'undefined' ){
+			 	panValue = 0.65;
+			}
 			audiolet = new Audiolet(sampleRate, 2, bufferSize);
-			audiolet.scheduler.setTempo(100);
+			audiolet.scheduler.setTempo(tempoValue);
 
 			// Create empty buffers for the bass drum, hi hat and snare drum
 			channels[0].buffer = new AudioletBuffer(1, 0);
@@ -77,13 +98,24 @@ define([
 			channels[2].trigger = new TriggerControl(audiolet);
 
 			// Create gain objects to control the individual gain of samples
-			channels[0].gain = new Gain(audiolet, 1.00);
-			channels[1].gain = new Gain(audiolet, 0.80);
-			channels[2].gain = new Gain(audiolet, 0.80);
+			channels[0].gain = new Gain(audiolet, gainValue);
+			channels[1].gain = new Gain(audiolet, gainValue);
+			channels[2].gain = new Gain(audiolet, gainValue);
+			
 			// Create pan objects to control the individual gain of samples
-			channels[0].pan = new Pan(audiolet, 0.45);
-			channels[1].pan = new Pan(audiolet, 0.65);
-			channels[2].pan = new Pan(audiolet, 0.40);
+			channels[0].pan = new Pan(audiolet, panValue);
+			channels[1].pan = new Pan(audiolet, panValue);
+			channels[2].pan = new Pan(audiolet, panValue);
+
+			// Create low pass filter objects to control the individual low pass filter of samples
+			channels[0].lowPassFilter = new LowPassFilter(audiolet, 400);
+			channels[1].lowPassFilter = new LowPassFilter(audiolet, 400);
+			channels[2].lowPassFilter = new LowPassFilter(audiolet, 400);
+
+			// Create sine objects to control the individual sine of samples
+			channels[0].sine = new Sine(audiolet, 1);
+			channels[1].sine = new Sine(audiolet, 1);
+			channels[2].sine = new Sine(audiolet, 1);
 
 			// Create default patterns:
 			//
@@ -128,6 +160,7 @@ define([
 			channels[0].player.connect(channels[0].gain);
 			channels[1].player.connect(channels[1].gain);
 			channels[2].player.connect(channels[2].gain);
+
 			// output of gain to input of pan
 			channels[0].gain.connect(channels[0].pan);
 			channels[1].gain.connect(channels[1].pan);
@@ -137,6 +170,17 @@ define([
 			channels[0].pan.connect(audiolet.output);
 			channels[1].pan.connect(audiolet.output);
 			channels[2].pan.connect(audiolet.output);
+
+			// // output of lowPassFilter to general output
+			// channels[0].lowPassFilter.connect(audiolet.output);
+			// channels[1].lowPassFilter.connect(audiolet.output);
+			// channels[2].lowPassFilter.connect(audiolet.output);
+
+			// // output of sine to general output
+			// channels[0].sine.connect(audiolet.output);
+			// channels[1].sine.connect(audiolet.output);
+			// channels[2].sine.connect(audiolet.output);
+
 			
 			// The scheduler will play the notes in bdPattern (amplitude)
 			// every bdDurations (time)
